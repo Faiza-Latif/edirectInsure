@@ -123,6 +123,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "edirect-insure"
+    }
+  },
+  "defaultProject": "edirect-insure",
+  "cli": {
+    "analytics": false
+  }
 }
