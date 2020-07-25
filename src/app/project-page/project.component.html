@@ -1,0 +1,38 @@
+<div class="container">
+  <div class="row">
+    <div class="col-sm">
+      <mat-list role="list">
+        <mat-list-item role="listitem">Item 1</mat-list-item>
+        <mat-list-item role="listitem">Item 2</mat-list-item>
+        <mat-list-item role="listitem">Item 3</mat-list-item>
+      </mat-list>    </div>
+    <div class="col-sm">
+      <mat-list role="list">
+        <mat-list-item role="listitem">Item 1</mat-list-item>
+        <mat-list-item role="listitem">Item 2</mat-list-item>
+        <mat-list-item role="listitem">Item 3</mat-list-item>
+      </mat-list>
+
+    </div>
+    <div class="col-sm">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-card>
+          <mat-card-content>
+            <h2>Create a new Project</h2>
+
+            <mat-form-field class="full-width-input">
+              <input
+                matInput
+                placeholder="Project Name"
+                formControlName="projectName"
+                required
+              />
+            </mat-form-field>
+
+            <button mat-raised-button color="primary">Create Project</button>
+          </mat-card-content>
+        </mat-card>
+      </form>
+    </div>
+  </div>
+</div>

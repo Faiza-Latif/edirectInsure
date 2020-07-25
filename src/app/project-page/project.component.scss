@@ -1,5 +1,6 @@
 mat-card {
   max-width: 400px;
+  min-width: 400px;
   margin: 2em auto;
   text-align: center;
 }
@@ -8,4 +9,8 @@ mat-form-field {
   display: block;
   text-align: center;
 
+}
+
+mat-grid-tile {
+  background: lightblue;
 }

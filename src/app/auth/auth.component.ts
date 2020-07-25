@@ -2,7 +2,7 @@ import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { AuthService, AuthResponse } from './auth.service';
 import { Router } from '@angular/router';
-import { FormsModule, NgForm } from '@angular/forms';
+import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
 
 @Component({

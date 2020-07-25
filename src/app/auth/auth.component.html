@@ -1,38 +1,61 @@
 
 
-  <!--template driven-->
+<mat-card>
+  <mat-card-content>
+    <form #f="ngForm">
+      <h2>{{ !isLogin ? "Sign Up" : "Login" }}</h2>
+      <mat-error *ngIf="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)">
+        Email invalid
+      </mat-error>
+      <mat-error *ngIf="passCtrl.invalid && (passCtrl.touched || passCtrl.dirty)">
+        Password invalid
+      </mat-error>
 
-  <form #f="ngForm">
-    <label>{{ !isLogin? 'Sign Up' : 'Login'}}</label>
-    <div class="form-group row">
-      <label for="email" class="col-sm-2 col-form-label">Email</label>
-      <div class="col-sm-10">
-        <input ngModel name="email" type="email" required #emailCtrl="ngModel">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-sm-10">
-        <div *ngIf="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)" class="form-control ng-untouched ng-pristine ng-valid">
-          <p>Email invalid</p>
-        </div>
-      </div>
-    </div>
-    <div class="form-group row">
-      <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-      <div class="col-sm-10">
-        <input  ngModel name="password" minlength="6" required #passCtrl="ngModel" type="password" class="form-control" id="inputPassword" placeholder="Password">
-      </div>
-    </div>
-    <div class="form-group row">
-      <div class="col-sm-10">
-        <div *ngIf="passCtrl.invalid && (passCtrl.touched || passCtrl.dirty)" class="form-control ng-untouched ng-pristine ng-valid">
-          <p>Password invalid</p>
-        </div>
-      </div>
-    </div>
-  </form>
-
-
-  <button type="submit" class="btn btn-lg btn-primary btn-block" color="primary" expand="block" [disabled]="!f.valid" (click)="onSubmit(f)">{{ isLogin? 'Login' : 'Sign Up'}}</button>
-  <button type="button" class="btn btn-lg btn-secondary btn-block" color="primary" fill="clear" (click)="onSwitchAuthMode()" expand="full">Switch to {{ isLogin? 'Sign Up' : 'Login'}}</button>
-    <p class="mt-5 mb-3 text-muted">{{message}}</p>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          placeholder="Email"
+          ngModel
+          name="email"
+          type="email"
+          required
+          #emailCtrl="ngModel"
+          required
+        />
+        <mat-error>
+          Please provide a valid email address
+        </mat-error>
+      </mat-form-field>
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          type="password"
+          placeholder="Password"
+          ngModel
+          name="password"
+          minlength="6"
+          required
+          #passCtrl="ngModel"
+        />
+        <mat-error>
+          Please provide a valid password
+        </mat-error>
+      </mat-form-field>
+      <button
+        mat-raised-button
+        color="primary"
+        [disabled]="!f.valid"
+        (click)="onSubmit(f)"
+      >
+        {{ isLogin ? "Login" : "Sign Up" }}
+      </button>
+      <button
+      mat-button
+      color="primary"
+      (click)="onSwitchAuthMode()"
+      >
+        Switch to {{ isLogin ? "Sign Up" : "Login" }}
+      </button>
+    </form>
+  </mat-card-content>
+</mat-card>
