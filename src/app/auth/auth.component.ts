@@ -4,6 +4,7 @@ import { AuthService, AuthResponse } from './auth.service';
 import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { HttpErrorResponse } from '@angular/common/http';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-auth',
@@ -12,16 +13,20 @@ import { HttpErrorResponse } from '@angular/common/http';
 })
 export class AuthComponent implements OnInit {
   isLogin = true;
+  hide = true;
+
   email: string;
   password: string;
   message: string;
   constructor(
+    private _snackBar: MatSnackBar,
     private authService: AuthService,
-    private route: Router  ) {}
+    private route: Router
+  ) {}
 
   ngOnInit() {}
 
-  authenticate(email, password) {
+  authenticate(f: NgForm, email, password) {
     if (!email || !password) {
       return null;
     }
@@ -34,8 +39,12 @@ export class AuthComponent implements OnInit {
 
     observable.subscribe(
       (responseData) => {
-        console.log(responseData);
-        this.route.navigateByUrl('/projects');
+        if (!this.isLogin) {
+          this.isLogin = !this.isLogin;
+          }
+        else {
+          this.route.navigateByUrl('/projects');
+        }
       },
       (error: HttpErrorResponse) => {
         let processedMessage = 'There was an error. Please try again later';
@@ -48,21 +57,29 @@ export class AuthComponent implements OnInit {
           processedMessage = 'This password is not correct';
         }
         this.message = processedMessage;
+        this.openSnackBar(processedMessage);
       }
     );
   }
 
+  openSnackBar(processedMessage: string) {
+    this._snackBar.open(processedMessage, 'OK', {
+      duration: 1000,
+    });
+  }
+
   onSubmit(f: NgForm) {
     if (!f.valid) {
-      return;
+      return this.openSnackBar('Please fill the form');
     }
     const email = f.value.email;
     const password = f.value.password;
-    this.authenticate(email, password);
-    f.reset();
+    this.authenticate(f, email, password);
+    f.resetForm();
   }
 
-  onSwitchAuthMode() {
+  onSwitchAuthMode(f: NgForm) {
     this.isLogin = !this.isLogin;
+    f.resetForm();
   }
 }

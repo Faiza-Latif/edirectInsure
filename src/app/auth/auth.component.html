@@ -1,32 +1,26 @@
 
 
 <mat-card>
-  <mat-card-content>
+  <mat-card-content class="fields-container">
     <form #f="ngForm">
       <h2>{{ !isLogin ? "Sign Up" : "Login" }}</h2>
-      <mat-error *ngIf="emailCtrl.invalid && (emailCtrl.touched || emailCtrl.dirty)">
-        Email invalid
-      </mat-error>
-      <mat-error *ngIf="passCtrl.invalid && (passCtrl.touched || passCtrl.dirty)">
-        Password invalid
-      </mat-error>
-
-      <mat-form-field class="full-width-input">
+      <mat-form-field>
         <input
           matInput
           placeholder="Email"
           ngModel
           name="email"
           type="email"
+          pattern="[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,4}"
           required
           #emailCtrl="ngModel"
           required
         />
-        <mat-error>
+        <mat-error *ngIf="!emailCtrl.valid && emailCtrl.touched && emailCtrl.dirty">
           Please provide a valid email address
         </mat-error>
       </mat-form-field>
-      <mat-form-field class="full-width-input">
+      <mat-form-field>
         <input
           matInput
           type="password"
@@ -34,10 +28,13 @@
           ngModel
           name="password"
           minlength="6"
+          pattern="^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{6,}$"
           required
           #passCtrl="ngModel"
+          matInput [type]="hide ? 'password' : 'text'"
         />
-        <mat-error>
+        <mat-icon (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide" >{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        <mat-error *ngIf="!passCtrl.valid && passCtrl.touched">
           Please provide a valid password
         </mat-error>
       </mat-form-field>
@@ -45,17 +42,19 @@
         mat-raised-button
         color="primary"
         [disabled]="!f.valid"
-        (click)="onSubmit(f)"
+        (click)="onSubmit(f); f.resetForm()"
       >
         {{ isLogin ? "Login" : "Sign Up" }}
       </button>
       <button
       mat-button
       color="primary"
-      (click)="onSwitchAuthMode()"
+      (click)="onSwitchAuthMode(f);  f.resetForm()"
       >
         Switch to {{ isLogin ? "Sign Up" : "Login" }}
       </button>
+
     </form>
+
   </mat-card-content>
 </mat-card>

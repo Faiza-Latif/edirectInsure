@@ -5,7 +5,14 @@ mat-card {
 }
 
 mat-form-field {
-  display: block;
+  display: flex;
   text-align: center;
+  flex-flow: column;
+  margin: 1em 6em;
+}
 
+mat-icon {
+  position: absolute;
+  padding: 3px;
+  font-size: medium;
 }

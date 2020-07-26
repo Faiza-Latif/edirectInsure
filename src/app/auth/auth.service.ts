@@ -72,11 +72,7 @@ export class AuthService implements OnDestroy {
         email,
         password,
         returnSecureToken: true
-      })
-      .pipe(
-        // execute code
-        tap(this.setUserData.bind(this))
-      );
+      });
   }
 
   login(email: string, password: string) {

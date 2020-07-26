@@ -1,6 +1,5 @@
-mat-card {
+mat-card.create {
   max-width: 400px;
-  min-width: 400px;
   margin: 2em auto;
   text-align: center;
 }
@@ -11,6 +10,11 @@ mat-form-field {
 
 }
 
+mat-icon{
+  cursor: pointer;
+  font-size: 15px;
+  text-align: right;
+}
 mat-grid-tile {
   background: lightblue;
 }

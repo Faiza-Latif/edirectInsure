@@ -13,7 +13,7 @@ const routes: Routes = [
     path: 'projects',
     loadChildren: () =>
       import('./project-page/project-page.module').then((m) => m.ProjectPageModule),
-    canLoad: [AuthGuard],
+     canLoad: [AuthGuard],
   },
   {
     path: 'task',

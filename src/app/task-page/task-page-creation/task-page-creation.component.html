@@ -1,0 +1,25 @@
+<form [formGroup]="form">
+
+      <h2>Create a new Task</h2>
+
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          placeholder="Task Name"
+          formControlName="taskName"
+          required
+        />
+      </mat-form-field>
+
+      <mat-form-field class="full-width-input">
+        <input
+          matInput
+          placeholder="Task Description"
+          formControlName="taskDescription"
+          required
+        />
+      </mat-form-field>
+
+      <button mat-button color="primary" [mat-dialog-close]="form" >Create </button>
+
+</form>
