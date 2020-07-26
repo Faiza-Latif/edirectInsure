@@ -14,10 +14,12 @@ import { MatListModule } from '@angular/material/list';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
+import { TaskPageModule } from '../task-page/task-page.module';
 
 @NgModule({
   declarations: [ProjectComponent],
   imports: [
+    TaskPageModule,
     CommonModule,
     ProjectRoutingModule,
     FormsModule,
@@ -48,6 +50,7 @@ import { MatDialogModule } from '@angular/material/dialog';
     MatInputModule,
     MatListModule,
     MatDialogModule,
+    TaskPageModule
   ],
   entryComponents: [TaskPageCreationComponent],
 })

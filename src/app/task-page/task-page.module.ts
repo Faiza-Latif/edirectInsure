@@ -31,6 +31,18 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
     MatDialogModule,
     MatCheckboxModule
   ],
-  exports: [MatCheckboxModule]
+  exports: [CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatSidenavModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatCardModule,
+    MatFormFieldModule,
+    MatDialogModule,
+    MatCheckboxModule,
+    TaskComponent]
 })
 export class TaskPageModule { }

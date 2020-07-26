@@ -1,18 +1,23 @@
-import { Component, OnInit } from '@angular/core';
+import { TaskService } from './task.service';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
-  selector: 'app-task',
+  selector: 'task',
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss']
 })
 export class TaskComponent implements OnInit {
-  status = '!done';
-  constructor() { }
+  constructor(private taskService: TaskService) {
 
+   }
+  @Input() projectId: string;
+  @Input() title: string;
+  @Input() id: string;
   ngOnInit(): void {
   }
 
-  changeStatus(): void{
-    this.status = 'done';
+  changeStatus() {
+    this.taskService.updateTask(this.projectId, this.id).subscribe();
   }
+
 }

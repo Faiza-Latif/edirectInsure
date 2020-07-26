@@ -28,8 +28,17 @@
         </mat-card-header>
         <mat-card-content>
           <h3>To Do</h3>
-
+          <ul  *ngIf="project.tasksTodo">
+            <li *ngFor="let todo of project.tasksTodo">
+              <task projectId={{project.id}} title={{todo.taskTitle}} id={{todo.id}}></task>
+            </li>
+          </ul>
           <h3>Done</h3>
+          <ul *ngIf="project.tasksDone">
+            <li *ngFor="let done of project.tasksDone">
+              <task projectId={{project.id}} title={{done.taskTitle}} id={{done.id}}></task>
+            </li>
+          </ul>
         </mat-card-content>
         <mat-card-actions>
           <button mat-raised-button color="primary" (click)="openDialog()">Create Task</button>
